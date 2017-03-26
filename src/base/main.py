@@ -10,7 +10,7 @@ import random
 
 
 class Board:
-    def __init__(self):
+    def __init__(self, numActiveFrets=5):
 
         self.numActiveFrets = 12
         self.isABC = True
@@ -18,7 +18,7 @@ class Board:
         self.altNotes = [1, 3, 6, 8, 10, 13, 15, 18, 20]
         self.notes = []
 
-        self.setABC(False)
+        self.setABC(self.isABC)
         self.tuning = self.setTuning('gCEA')
 
     def setABC(self, isABC):

@@ -16,3 +16,4 @@ ex.show()
 a = main.Board()
 a.randNote()
 sys.exit(app.exec_())
+# TODO: rewrite launcher for main program

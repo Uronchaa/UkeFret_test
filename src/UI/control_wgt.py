@@ -62,7 +62,7 @@ class Ui_Control_widget(object):
         _translate = QtCore.QCoreApplication.translate
         Control_widget.setWindowTitle(_translate("Control_widget", "Form"))
         self.Fret_label.setText(_translate("Control_widget", "Number of frets "))
-        self.Eng_label.setText(_translate("Control_widget", "English note names"))
+        self.Eng_label.setText(_translate("Control_widget", "English notation"))
         self.Alt_label.setText(_translate("Control_widget", "Alterations"))
         self.actionButton.setText(_translate("Control_widget", "PushButton"))
 

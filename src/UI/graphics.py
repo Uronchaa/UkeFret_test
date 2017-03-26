@@ -10,6 +10,8 @@ from PyQt5.QtGui import QPainter, QColor, QPen
 from PyQt5.QtCore import Qt
 
 
+# TODO: add visual indication of number of active frets
+
 class BoardFrontal(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -30,7 +32,7 @@ class BoardFrontal(QWidget):
         col = QColor(0, 0, 0)
         qp.setPen(col)
 
-        qp.setBrush(QColor('brown'))
+        qp.setBrush(QColor(128, 64, 0))
         qp.drawRect(0, 0, self.length, self.width)
 
         pen = QPen(Qt.black, 2, Qt.SolidLine)

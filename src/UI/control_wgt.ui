@@ -54,7 +54,7 @@
     <item row="1" column="0">
      <widget class="QLabel" name="Eng_label">
       <property name="text">
-       <string>English note names</string>
+          <string>English notation</string>
       </property>
      </widget>
     </item>

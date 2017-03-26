@@ -7,13 +7,12 @@ Created on 4 févr. 2016
 """
 import sys
 from src.UI.control_wgt import *
-from src.UI import Control
+from src.UI import graphics
 from src.base import main
-from PyQt5.QtWidgets import (QMainWindow, QApplication, QHBoxLayout,
-                             QVBoxLayout, QPushButton, QWidget, QTextEdit)
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (QApplication, QHBoxLayout, QVBoxLayout, QWidget)
 
+
+# TODO : Add main window
 
 class CentralWidget(QWidget):
     def __init__(self):
@@ -23,9 +22,8 @@ class CentralWidget(QWidget):
     def initUI(self):
         self.board = main.Board()
 
-        # fboard = graphics.BoardFrontal(self)
+        fboard = graphics.BoardFrontal(self)
         controller = Controller()
-        fboard = QTextEdit(self)
         fboard.resize(300, 300)
 
         vbox = QVBoxLayout()
@@ -41,6 +39,12 @@ class CentralWidget(QWidget):
 
         self.setLayout(hbox)
 
+        # Send default values to control box widget
+        controller.numFret.setValue(self.board.numActiveFrets)
+        controller.checkAbc.setChecked(self.board.isABC)
+        controller.checkAlt.setChecked(self.board.hasAlt)
+
+        # setup signal / slots for control box
         controller.checkAbc.toggled[bool].connect(self.board.setABC)
         controller.checkAlt.toggled[bool].connect(self.board.setAlt)
         controller.numFret.valueChanged[int].connect(self.board.setNumActiveFrets)
