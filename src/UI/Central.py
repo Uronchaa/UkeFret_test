@@ -5,7 +5,10 @@ Created on 4 févr. 2016
 
 @author: ade
 """
-import sys, graphics, Control
+import sys
+from src.UI.control_wgt import *
+from src.UI import Control
+from src.base import main
 from PyQt5.QtWidgets import (QMainWindow, QApplication, QHBoxLayout,
                              QVBoxLayout, QPushButton, QWidget, QTextEdit)
 from PyQt5.QtGui import QPixmap
@@ -18,10 +21,10 @@ class CentralWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.board = graphics.Board(self)
+        self.board = main.Board()
 
         # fboard = graphics.BoardFrontal(self)
-        controller = Control.Controler(self)
+        controller = Controller()
         fboard = QTextEdit(self)
         fboard.resize(300, 300)
 
@@ -52,7 +55,13 @@ class CentralWidget(QWidget):
         print(self.board.nameNote(*self.board.randNote()))
 
 
+class Controller(QWidget, Ui_Control_widget):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = CentralWidget()
+    ex.show()
     sys.exit(app.exec_())
