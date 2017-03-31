@@ -21,11 +21,13 @@ class BoardFrontal(QWidget):
         self.width = 150
         self.length = 500
         self.setMinimumSize(self.length + 1, self.width + 1)
+        self.numInactive = 5
 
     def paintEvent(self, e):
         qp = QPainter()
         qp.begin(self)
         self.drawRectangles(qp)
+        self.drawInactive(qp)
         qp.end()
 
     def drawRectangles(self, qp):
@@ -44,9 +46,12 @@ class BoardFrontal(QWidget):
         for i in range(1, 20):
             qp.drawLine(i * self.length / 20, 0, i * self.length / 20, self.width)
 
-    def drawInactive(self):
-        pass
-
+    def drawInactive(self, qp):
+        qp.setBrush(QColor('blue'))
+        qp.drawRect(self.numInactive * self.length / 20, 0, (20-self.numInactive) * self.length / 20, self.width)
+        # TODO: change color
+        # TODO: change transparency
+        # TODO: no border
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

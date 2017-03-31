@@ -22,13 +22,13 @@ class CentralWidget(QWidget):
     def initUI(self):
         self.board = main.Board()
 
-        fboard = graphics.BoardFrontal(self)
+        self.fboard = graphics.BoardFrontal(self)
         controller = Controller()
-        fboard.resize(300, 300)
+        self.fboard.resize(300, 300)
 
         vbox = QVBoxLayout()
         vbox.addStretch(1)
-        vbox.addWidget(fboard)
+        vbox.addWidget(self.fboard)
         vbox.addStretch(1)
 
         hbox = QHBoxLayout()
@@ -43,11 +43,13 @@ class CentralWidget(QWidget):
         controller.numFret.setValue(self.board.numActiveFrets)
         controller.checkAbc.setChecked(self.board.isABC)
         controller.checkAlt.setChecked(self.board.hasAlt)
+        # TODO: set default value to fretboard visual
 
         # setup signal / slots for control box
-        controller.checkAbc.toggled[bool].connect(self.board.setABC)
-        controller.checkAlt.toggled[bool].connect(self.board.setAlt)
-        controller.numFret.valueChanged[int].connect(self.board.setNumActiveFrets)
+        controller.checkAbc.toggled[bool].connect(self.setABC)
+        controller.checkAlt.toggled[bool].connect(self.setAlt)
+        controller.numFret.valueChanged[int].connect(self.setNumActiveFrets)
+        # TODO: limit number of frets to 20
         controller.actionButton.clicked.connect(self.giveNote)
 
         self.setGeometry(300, 300, 300, 200)
@@ -57,6 +59,19 @@ class CentralWidget(QWidget):
 
     def giveNote(self):
         print(self.board.nameNote(*self.board.randNote()))
+
+    def setABC(self, isABC):
+        self.board.setABC(isABC)
+        self.fboard.repaint()
+
+    def setAlt(self, hasAlt):
+        self.board.setAlt(hasAlt)
+        self.fboard.repaint()
+
+    def setNumActiveFrets(self, i):
+        self.board.setNumActiveFrets(i)
+        self.fboard.numInactive = i
+        self.fboard.repaint()
 
 
 class Controller(QWidget, Ui_Control_widget):
