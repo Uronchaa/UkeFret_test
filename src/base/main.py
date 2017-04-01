@@ -12,7 +12,7 @@ import random
 class Board:
     def __init__(self, numActiveFrets=5):
 
-        self.numActiveFrets = 12
+        self.numActiveFrets = numActiveFrets
         self.isABC = True
         self.hasAlt = False
         self.altNotes = [1, 3, 6, 8, 10, 13, 15, 18, 20]

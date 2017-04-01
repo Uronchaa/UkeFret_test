@@ -27,6 +27,7 @@ class BoardFrontal(QWidget):
         self.drawRectangles(qp)
         self.drawFretMarkers(qp)
         self.drawInactive(qp)
+        self.drawInactiveAlt(qp)
         qp.end()
 
     def drawRectangles(self, qp):
@@ -65,7 +66,17 @@ class BoardFrontal(QWidget):
         qp.setBrush(QColor('black'))
         qp.drawRect(self.numInactive * self.length / 20, 0, (20-self.numInactive) * self.length / 20, self.width)
 
-        # TODO: add inactive altered
+        # TODO: determine wich notes to be altered
+        # fixme: change object parents to inherit from Fretboard
+
+    def drawInactiveAlt(self, qp):
+        qp.setOpacity(0.7)
+        qp.setPen(Qt.NoPen)
+        qp.setBrush(QColor('blue'))
+        for i in range(4):
+            for j in range(self.numInactive):
+                if (i + j) % 2:
+                    qp.drawRect(j * self.length / 20, i * self.width / 4, self.length / 20, self.width / 4)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
