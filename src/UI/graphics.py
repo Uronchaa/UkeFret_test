@@ -25,6 +25,7 @@ class BoardFrontal(QWidget):
         qp = QPainter()
         qp.begin(self)
         self.drawRectangles(qp)
+        self.drawFretMarkers(qp)
         self.drawInactive(qp)
         qp.end()
 
@@ -44,11 +45,27 @@ class BoardFrontal(QWidget):
         for i in range(1, 20):
             qp.drawLine(i * self.length / 20, 0, i * self.length / 20, self.width)
 
+    def drawFretMarkers(self, qp):
+        mark_diam = 15
+        qp.setPen(Qt.NoPen)
+        qp.setBrush(QColor('white'))
+        qp.drawEllipse((5 * self.length / 20) - self.length / 40 - mark_diam / 2,
+                       (self.width - mark_diam) / 2, mark_diam, mark_diam)
+        qp.drawEllipse((7 * self.length / 20) - self.length / 40 - mark_diam / 2,
+                       (self.width - mark_diam) / 2, mark_diam, mark_diam)
+        qp.drawEllipse((10 * self.length / 20) - self.length / 40 - mark_diam / 2,
+                       (self.width - mark_diam) / 2, mark_diam, mark_diam)
+        qp.drawEllipse((12 * self.length / 20) - self.length / 40 - mark_diam / 2,
+                       (self.width - mark_diam) / 2, mark_diam, mark_diam)
+
+
     def drawInactive(self, qp):
         qp.setOpacity(0.7)
         qp.setPen(Qt.NoPen)
         qp.setBrush(QColor('black'))
         qp.drawRect(self.numInactive * self.length / 20, 0, (20-self.numInactive) * self.length / 20, self.width)
+
+        # TODO: add inactive altered
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

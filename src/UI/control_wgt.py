@@ -44,6 +44,8 @@ class Ui_Control_widget(object):
         self.checkAbc.setObjectName("checkAbc")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.checkAbc)
         self.numFret = QtWidgets.QSpinBox(self.formLayoutWidget)
+        self.numFret.setMinimum(4)
+        self.numFret.setMaximum(20)
         self.numFret.setObjectName("numFret")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.numFret)
         self.actionButton = QtWidgets.QPushButton(Control_widget)

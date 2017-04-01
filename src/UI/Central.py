@@ -39,18 +39,16 @@ class CentralWidget(QWidget):
 
         self.setLayout(hbox)
 
-        # Send default values to control box widget
-        controller.numFret.setValue(self.board.numActiveFrets)
-        controller.checkAbc.setChecked(self.board.isABC)
-        controller.checkAlt.setChecked(self.board.hasAlt)
-        # TODO: set default value to fretboard visual
-
         # setup signal / slots for control box
         controller.checkAbc.toggled[bool].connect(self.setABC)
         controller.checkAlt.toggled[bool].connect(self.setAlt)
         controller.numFret.valueChanged[int].connect(self.setNumActiveFrets)
-        # TODO: limit number of frets to 20
         controller.actionButton.clicked.connect(self.giveNote)
+
+        # Send default values to control box widget
+        controller.numFret.setValue(self.board.numActiveFrets)
+        controller.checkAbc.setChecked(self.board.isABC)
+        controller.checkAlt.setChecked(self.board.hasAlt)
 
         self.setGeometry(300, 300, 300, 200)
         # self.setMaximumSize(300, 200)

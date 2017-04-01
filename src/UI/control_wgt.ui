@@ -76,7 +76,14 @@
      <widget class="QCheckBox" name="checkAbc"/>
     </item>
     <item row="0" column="1">
-     <widget class="QSpinBox" name="numFret"/>
+        <widget class="QSpinBox" name="numFret">
+            <property name="minimum">
+                <number>4</number>
+            </property>
+            <property name="maximum">
+                <number>20</number>
+            </property>
+        </widget>
     </item>
    </layout>
   </widget>
