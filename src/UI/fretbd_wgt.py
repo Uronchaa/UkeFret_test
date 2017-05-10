@@ -10,7 +10,7 @@ from PyQt5.QtGui import QPainter, QColor, QPen
 from PyQt5.QtCore import Qt
 
 
-class BoardFrontal(QWidget):
+class Board_wgt(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.initUI()
@@ -80,7 +80,7 @@ class BoardFrontal(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = BoardFrontal()
+    ex = Board_wgt()
     ex.show()
     # a = Board()
     # a.randNote()

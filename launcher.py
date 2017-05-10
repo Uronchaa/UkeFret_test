@@ -7,13 +7,13 @@ Created on 25 mar. 2017
 
 import sys
 from PyQt5.QtWidgets import QApplication
-from src.UI import graphics
-from src.base import main
+from src.UI import fretbd_wgt
+from src.base import fretbd
 
 app = QApplication(sys.argv)
-ex = graphics.BoardFrontal()
+ex = fretbd_wgt.Board_wgt()
 ex.show()
-a = main.Board()
+a = fretbd.Board()
 a.randNote()
 sys.exit(app.exec_())
 # TODO: rewrite launcher for main program

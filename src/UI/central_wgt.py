@@ -7,8 +7,8 @@ Created on 4 févr. 2016
 """
 import sys
 from src.UI.control_wgt import *
-from src.UI import graphics
-from src.base import main
+from src.UI import fretbd_wgt
+from src.base import fretbd
 from PyQt5.QtWidgets import (QApplication, QHBoxLayout, QVBoxLayout, QWidget)
 
 
@@ -20,9 +20,9 @@ class CentralWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.board = main.Board()
+        self.board = fretbd.Board()
 
-        self.fboard = graphics.BoardFrontal(self)
+        self.fboard = fretbd_wgt.Board_wgt(self)
         controller = Controller()
         self.fboard.resize(300, 300)
 
